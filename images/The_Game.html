@@ -1,0 +1,2029 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de" >
+
+<head>
+    <title>The Game</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+
+    <link href="styles/The_Game.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body id="body" style="width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;overflow: hidden;">
+<div style="position: absolute;height: 5000px; width: 1px; top:0px;left:0px;background-color:grey;" id="bl"></div>
+<div style="position: absolute;height: 5000px; width: 1px; top:0px;left:0px;background-color:grey;" id="br"></div>
+<div style="position: absolute;height: 1px; width: 5000px; top:0px;left:0px;background-color:grey;" id="bt"></div>
+<div style="position: absolute;height: 1px; width: 5000px; top:0px;left:0px;background-color:grey;" id="bb"></div>
+<div id="frames" style="position: absolute; top:5px;left:5px;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;">0fps</div>
+<div style="position:absolute;top:95vh;left:10vh;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;" id="position"></div>
+<div id="+1" style="position: absolute; top:90.5vh;left:89vw;z-index:8;font-size:3vh;font-weight:bold;will-change: opacity, transform;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    transition: all .3s ease-out;color:transparent;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;">+1</div>
+<div id="+dna" style="position: absolute; top:90.5vh;left:89vw;z-index:8;font-size:0vh;font-weight:bold;will-change: opacity, transform;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    transition: all .3s ease-out;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;">+<img src="DNA.png" id="dnabild" style="width:1.5vh;height:0vh;transform;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    transition: all .3s ease-out;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background:none;"/></div>
+<div id="punkte" style="position: absolute; top:93vh;left:90vw;font-size:2vh;z-index:7;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;"><span style="-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;position:relative;font-size:4vh;top:-1vh;z-index:5;" id="dna">100 </span><img src="DNA.png" style="width:2vh;height:5vh;z-index:7;"/></div>
+<canvas id="el1" class="el1" style="-moz-transform:rotate(0deg);
+    -webkit-transform:rotate(0deg);
+    -o-transform:rotate(0deg);
+    -ms-transform:rotate(0deg);
+    transform:rotate(0deg);
+    margin-left: -65px;
+	width: 130px;
+    margin-top: -65px;
+    z-index:1;
+    top:50%;
+    left: 50%;
+	height: 130px;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;"></canvas>
+<div id="healthbar" style="-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;position: absolute;top:90vh;left:35vw;width:30vw;height:2vh; background-color:lightgrey; border-style:solid;border-color:lightgrey;;z-index:3;-webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    transition: all .3s ease-out;"></div>
+<div id="truehealth" style="-webkit-transition : border-color 600ms ease-out;
+  -moz-transition : border-color 600ms ease-out;
+  -o-transition : border-color 600ms ease-out;
+  transition : border-color 600ms ease-out;-webkit-transition: background-color 600ms linear;
+    -moz-transition: background-color 600ms linear;
+    -o-transition: background-color 600ms linear;
+    -ms-transition: background-color 600ms linear;
+    transition: background-color 600ms linear;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;position: absolute;top:90vh;left:35vw;width:20vw;height:2vh; background-color:red;;z-index:3;border-style:solid;border-color:red;text-align:center;" class="hunger">health</div>
+<div id="hungerbar" style="-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;position: absolute;top:94vh;left:35vw;width:30vw;height:2vh; background-color:lightgrey; border-style:solid;border-color:lightgrey;;z-index:3;-webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    transition: all .3s ease-out;"></div>
+<div id="truehunger" style="-webkit-transition : border-color 600ms ease-out;
+  -moz-transition : border-color 600ms ease-out;
+  -o-transition : border-color 600ms ease-out;
+  transition : border-color 600ms ease-out;-webkit-transition: background-color 600ms linear;
+    -moz-transition: background-color 600ms linear;
+    -o-transition: background-color 600ms linear;
+    -ms-transition: background-color 600ms linear;
+    transition: background-color 600ms linear;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;position: absolute;top:94vh;left:35vw;width:20vw;height:2vh; background-color:#DABD30;z-index:3;border-style:solid;border-color:#DABD30;text-align:center;" class="hunger">hunger</div>
+<script>
+size=2;
+zahlda=Math.floor(Math.random()*11+1);
+eigenbild="images/ellipsstyle"+zahlda+".png";
+eigenhoehe=130;
+eigenbreite=66;
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+Math.dsin = function() {
+  var piRatio = Math.PI / 180;
+  return function dsin(degrees) {
+    return Math.sin(degrees * piRatio);
+  };
+}();
+Array.prototype.max = function() {
+  return Math.max.apply(null, this);
+};
+
+Array.prototype.min = function() {
+  return Math.min.apply(null, this);
+};
+function inarray(haystack,needle) {
+    var length = haystack.length;
+    for(var i = 0; i < length; i++) {
+        if(haystack[i] == needle) return true;
+    }
+    return false;
+}
+function isset(value){
+        return value !== undefined && value !== null && typeof value!=="undefined";
+    }
+var TO_RADIANS = Math.PI/180;
+function DRI(image, x, y, angle,context,width,height) {
+
+	// save the current co-ordinate system
+	// before we screw with it
+	context.save();
+
+	// move to the middle of where we want to draw our image
+	context.translate(x, y);
+
+	// rotate around that point, converting our
+	// angle from degrees to radians
+	context.rotate(angle * TO_RADIANS);
+
+	// draw it up and to the left by half the width
+	// and height of the image
+	if (width){
+        context.drawImage(image, -(image.width/2), -(image.height/2),width,height);
+    }
+    else{
+        context.drawImage(image, -(image.width/2), -(image.height/2));
+    }
+	// and restore the co-ords to how they were when we began
+	context.restore();
+}
+function getpos(element) {
+    var xPosition = 0;
+    var yPosition = 0;
+
+    while(element) {
+        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+        element = element.offsetParent;
+    }
+    return [xPosition,yPosition];
+}
+function sprite (options) {
+
+    var self = {};
+
+    self.ctx = options.ctx;
+    self.width = options.width;
+    self.height = options.height;
+    self.Xpos=options.Xpos;
+    self.Ypos=options.Ypos;
+    return self;
+}
+function colorips(ctx,x,y,width,height,ctx2,x2,y2,width2,height2){
+    var x=Math.round(x);
+    var y=Math.round(y);
+    var colel1=[];
+    var colel2=[];
+    var width=Math.round(width);
+    var height=Math.round(height);
+    var x2=Math.round(x2);
+    var y2=Math.round(y2);
+    var width2=Math.round(width2);
+    var height2=Math.round(height2);
+    var rect1 = {x: x, y: y, width: width, height: height}
+    var rect2 = {x: x2, y: y2, width: width2, height: height2}
+
+    if (rect1.x < rect2.x + rect2.width &&
+        rect1.x + rect1.width > rect2.x &&
+        rect1.y < rect2.y + rect2.height &&
+        rect1.height + rect1.y > rect2.y) {
+        // collision detected!
+    }
+    else{
+        return false;
+    }
+    var Ax=x;
+    var Ay=y;
+    var AX=x+width;
+    var AY=y+height;
+    var Bx=x2;
+    var By=y2;
+    var BX=x2+width2;
+    var BY=y2+height2;
+    var Cx=Ax<Bx?Bx:Ax;
+    var Cy=Ay<By?By:Ay;
+    var CX=AX<BX?AX:BX;
+    var CY=AY<BY?AY:BY;
+    var CW=CX-Cx;
+    var CH=CY-Cy;
+    var Axs=Cx-Ax;
+    var Ays=Cy-Ay;
+    var Bxs=Cx-Bx;
+    var Bys=Cy-By;
+    var ctxoverlap=ctx.getImageData(Axs*1,Ays*1,CW*1,CH*1);
+    var ctx2overlap=ctx2.getImageData(Bxs*1,Bys*1,CW*1,CH*1);
+    /*var ctx2try=ctx2.getImageData(0,0,100,100);
+    var show=document.getElementById("el2");
+    var showctx=show.getContext("2d");
+    showctx.clearRect(0, 0, 400, 400);
+    var showdata=showctx.putImageData(ctx2overlap,0,0);
+    var show=document.getElementById("el3");
+    var showctx=show.getContext("2d");
+    showctx.clearRect(0, 0, 400, 400);
+    var showdata=showctx.putImageData(ctxoverlap,0,0);
+    for (var d=0;d<ctx2try.data.length;d++){
+        if (ctx2try.data[d]==0){
+        }
+    }*/
+    //while (1);
+    var ctxdata=ctxoverlap.data;
+    var ctx2data=ctx2overlap.data;
+    for (var i=0;i<ctx2data.length;i+=4){
+        if (isset(ctxdata[i+3])&& isset(ctx2data[i+3])){
+            if (ctxdata[i+3]!==0 && ctx2data[i+3]!==0){
+                var neufarb=ctxdata[i]+""+ctxdata[i+1]+""+ctxdata[i+2];
+                var neufarb2=ctx2data[i]+""+ctx2data[i+1]+""+ctx2data[i+2];
+                var mach=true;
+                var mach2=true;
+                for (var z=0;z<colel1.length;z++){
+                    if (colel1[z]==neufarb){
+                        mach=false;
+                    }
+                }
+                for (var z=0;z<colel2.length;z++){
+                    if (colel2[z]==neufarb2){
+                        mach2=false;
+                    }
+                }
+                if (mach){
+                    colel1.push(neufarb);
+                }
+                if (mach2){
+                    colel2.push(neufarb2);
+                }
+            }
+        }
+
+    }
+    if (isset(colel1[0])){
+        return [colel1,colel2];
+    }
+    else{
+        return false;
+    }
+}
+function pixelips(ctx,x,y,width,height,ctx2,x2,y2,width2,height2){
+    var collidepixels=[];
+    var x=Math.round(x);
+    var y=Math.round(y);
+    var width=Math.round(width);
+    var height=Math.round(height);
+    var x2=Math.round(x2);
+    var y2=Math.round(y2);
+    var width2=Math.round(width2);
+    var height2=Math.round(height2);
+    var rect1 = {x: x, y: y, width: width, height: height}
+    var rect2 = {x: x2, y: y2, width: width2, height: height2}
+
+    if (rect1.x < rect2.x + rect2.width &&
+        rect1.x + rect1.width > rect2.x &&
+        rect1.y < rect2.y + rect2.height &&
+        rect1.height + rect1.y > rect2.y) {
+        // collision detected!
+    }
+    else{
+        return false;
+    }
+    var Ax=x;
+    var Ay=y;
+    var AX=x+width;
+    var AY=y+height;
+    var Bx=x2;
+    var By=y2;
+    var BX=x2+width2;
+    var BY=y2+height2;
+    var Cx=Ax<Bx?Bx:Ax;
+    var Cy=Ay<By?By:Ay;
+    var CX=AX<BX?AX:BX;
+    var CY=AY<BY?AY:BY;
+    var CW=CX-Cx;
+    var CH=CY-Cy;
+    var Axs=Cx-Ax;
+    var Ays=Cy-Ay;
+    var Bxs=Cx-Bx;
+    var Bys=Cy-By;
+    var ctxoverlap=ctx.getImageData(Axs*1,Ays*1,CW*1,CH*1);
+    var ctx2overlap=ctx2.getImageData(Bxs*1,Bys*1,CW*1,CH*1);
+    /*var ctx2try=ctx2.getImageData(0,0,100,100);
+    var show=document.getElementById("el2");
+    var showctx=show.getContext("2d");
+    showctx.clearRect(0, 0, 400, 400);
+    var showdata=showctx.putImageData(ctx2overlap,0,0);
+    var show=document.getElementById("el3");
+    var showctx=show.getContext("2d");
+    showctx.clearRect(0, 0, 400, 400);
+    var showdata=showctx.putImageData(ctxoverlap,0,0);
+    for (var d=0;d<ctx2try.data.length;d++){
+        if (ctx2try.data[d]==0){
+        }
+    }*/
+    //while (1);
+    var ctxdata=ctxoverlap.data;
+    var ctx2data=ctx2overlap.data;
+    for (var i=0;i<ctx2data.length;i+=4){
+        if (isset(ctxdata[i+3])&& isset(ctx2data[i+3])){
+            if (ctxdata[i+3]!==0 && ctx2data[i+3]!==0){
+                collidepixels.push(i/4);
+            }
+        }
+
+    }
+    if (isset(collidepixels[0])){
+        return collidepixels;
+    }
+    return false;
+}
+function usepixelips(ctx,x,y,width,height,ctx2,x2,y2,width2,height2){
+    var pixels=pixelips(ctx,x,y,width,height,ctx2,x2,y2,width2,height2);
+    if (pixels){
+        /*var thedata=ctx2.getImageData(0,0,width2,height2);
+        var trd=thedata.data;
+        var flinks=width2;
+        var frechts=width2;
+        var foben=height2;
+        var funten=height2;
+        for (var a=0;a<trd.length;a+=4){
+            if (trd[a+3]!==0){
+                if ((a/4)%width2<flinks){
+                    flinks=(a/4)%width2;
+                }
+                if ((width2-1)-(a/4)%width2<frechts){
+                    frechts=(width2-1)-(a/4)%width2;
+                }
+                if (Math.floor((a/4)/height2)<foben){
+                    foben=Math.floor((a/4)/height2);
+                }
+                if ((height2-1)-Math.floor((a/4)/height2)<funten){
+                    funten=(height2-1)-Math.floor((a/4)/height2);
+                }
+            }
+        }*/
+        var nahlinks=width2+1;
+        var nahrechts=width2+1;
+        var nahoben=height2+1;
+        var nahunten=height2+1;
+        var thedata=ctx2.getImageData(0,0,width2,height2);
+        var trd=thedata.data;
+        var truepixels=[];
+        for (var i=0;i<trd.length;i+=4){
+            if (trd[i+3]!==0){
+                truepixels.push(i/4);
+            }
+        }
+        var allowl=false;
+        var allowr=false;
+        var allowo=false;
+        var allowu=false;
+        var hoehen=[];
+        var weiten=[];
+        for (var a=0;a<width2;a++){
+            hoehen.push([0,false]);
+        }
+        for (var a=0;a<height2;a++){
+            weiten.push([0,false]);
+        }
+        for (var a=0;a<pixels.length;a++){
+            var temp=pixels[a]; 
+            if (hoehen[temp%width2][0]==0){
+                if (inarray(truepixels,temp-width2)){
+                    hoehen[temp%width2][1]=false;
+                }
+                else{
+                    hoehen[temp%width2][1]=true;
+                }
+            }  
+            if (weiten[Math.floor(temp/height2)][0]==0){
+                if (inarray(truepixels,temp-1)){
+                    weiten[Math.floor(temp/height2)][1]=false;
+                }
+                else{
+                    weiten[Math.floor(temp/height2)][1]=true;
+                }
+            }
+            hoehen[temp%width2][0]+=1;
+            weiten[Math.floor(temp/height2)][0]+=1;
+        }
+        var ezweiten=[];
+        var ezhoehen=[];
+        for (var a=0;a<weiten.length;a++){
+            ezweiten.push(weiten[a][0]);
+        }
+        for (var a=0;a<hoehen.length;a++){
+            ezhoehen.push(hoehen[a][0]);
+        }
+        var verschiebx=ezweiten.max();
+        var verschieby=ezhoehen.max();
+        var richtungx=weiten[ezweiten.indexOf(verschiebx)][1];
+        var richtungy=hoehen[ezhoehen.indexOf(verschieby)][1];
+        /*for (var a=0;a<pixels.length;a++){
+            var temp=pixels[a];
+            if (temp%width2<nahlinks){
+                nahlinks=temp%width2;
+            }
+            if ((width2-1)-(temp%width2)<nahrechts){
+                nahrechts=(width2-1)-temp%width2;
+            }
+            if (Math.floor(temp/height2)<nahoben){
+                nahoben=Math.floor(temp/height2);
+            }
+            if ((height2-1)-Math.floor(temp/height2)<nahunten){
+                nahunten=(height2-1)-Math.floor(temp/height2);
+            }
+        }*/
+    }
+    else{
+        return false;
+    }
+    if (richtungx){
+        var retur1=verschiebx;
+    }
+    else{
+        var retur1=-verschiebx;
+    }
+    if (richtungy){
+        var retur2=verschieby;
+    }
+    else{
+        var retur2=-verschieby;
+    }
+    return [retur1,retur2];
+}
+function myIPS(ctx,x,y,width,height,ctx2,x2,y2,width2,height2){
+    var x=Math.round(x);
+    var y=Math.round(y);
+    var width=Math.round(width);
+    var height=Math.round(height);
+    var x2=Math.round(x2);
+    var y2=Math.round(y2);
+    var width2=Math.round(width2);
+    var height2=Math.round(height2);
+    var rect1 = {x: x, y: y, width: width, height: height}
+    var rect2 = {x: x2, y: y2, width: width2, height: height2}
+
+    if (rect1.x < rect2.x + rect2.width &&
+        rect1.x + rect1.width > rect2.x &&
+        rect1.y < rect2.y + rect2.height &&
+        rect1.height + rect1.y > rect2.y) {
+        // collision detected!
+    }
+    else{
+        return false;
+    }
+    var Ax=x;
+    var Ay=y;
+    var AX=x+width;
+    var AY=y+height;
+    var Bx=x2;
+    var By=y2;
+    var BX=x2+width2;
+    var BY=y2+height2;
+    var Cx=Ax<Bx?Bx:Ax;
+    var Cy=Ay<By?By:Ay;
+    var CX=AX<BX?AX:BX;
+    var CY=AY<BY?AY:BY;
+    var CW=CX-Cx;
+    var CH=CY-Cy;
+    var Axs=Cx-Ax;
+    var Ays=Cy-Ay;
+    var Bxs=Cx-Bx;
+    var Bys=Cy-By;
+    var ctxoverlap=ctx.getImageData(Axs*1,Ays*1,CW*1,CH*1);
+    var ctx2overlap=ctx2.getImageData(Bxs*1,Bys*1,CW*1,CH*1);
+    /*var ctx2try=ctx2.getImageData(0,0,100,100);
+    var show=document.getElementById("el2");
+    var showctx=show.getContext("2d");
+    showctx.clearRect(0, 0, 400, 400);
+    var showdata=showctx.putImageData(ctx2overlap,0,0);
+    var show=document.getElementById("el3");
+    var showctx=show.getContext("2d");
+    showctx.clearRect(0, 0, 400, 400);
+    var showdata=showctx.putImageData(ctxoverlap,0,0);
+    for (var d=0;d<ctx2try.data.length;d++){
+        if (ctx2try.data[d]==0){
+        }
+    }*/
+    //while (1);
+    var ctxdata=ctxoverlap.data;
+    var ctx2data=ctx2overlap.data;
+    for (var i=0;i<ctx2data.length;i+=4){
+        if (isset(ctxdata[i+3])&& isset(ctx2data[i+3])){
+            if (ctxdata[i+3]!==0 && ctx2data[i+3]!==0){
+                return true;
+            }
+        }
+
+    }
+    return false;
+}
+var cursorX;
+var cursorY;
+var pos=[100,100];
+document.onmousemove = function(e){
+    cursorX = e.pageX;
+    cursorY = e.pageY;
+    pos=[cursorX,cursorY];
+}
+position=[2000,2000];
+fleischpos=[];
+for (a=0;a<100;a++){
+    einx=Math.random()*5000;
+    einy=Math.random()*5000;
+    einw=parseInt(Math.random()*15)+15;
+    einh=parseInt(einw+(einw/16));
+    if (einx>1500&&einx<2500&&einy>1500&&einy<2500){
+        continue;
+    }
+    fleischpos.push([einx,einy,einw,einh]);
+}
+kreispos=[];
+for (a=0;a<10;a++){
+    einx=Math.random()*5000;
+    einy=Math.random()*5000;
+    if (einx>1500&&einx<2500&&einy>1500&&einy<2500){
+        continue;
+    }
+    kreispos.push([einx,einy]);
+}
+el1h=parseInt(document.getElementById("el1").style.height);
+//el2h=parseInt(document.getElementById("el2").style.height);
+el1w=parseInt(document.getElementById("el1").style.width);
+//el2w=parseInt(document.getElementById("el2").style.width);
+//el2l=parseInt(document.getElementById("el2").style.left);
+//el2t=parseInt(document.getElementById("el2").style.top);
+bodyw=window.innerWidth;
+bodyh=window.innerHeight;
+//neu=(el2l+(el1w-el2w))+"px";
+//document.getElementById("el2").style.left=neu;
+bodyrect=document.getElementById("body").getBoundingClientRect();
+rect = document.getElementById("el1").getBoundingClientRect();
+center=[bodyrect.left+bodyw/2,bodyrect.top+bodyh/2];
+bodypos=[position[0]-(center[0]-bodyrect.left)*size,position[1]-(center[1]-bodyrect.top)*size];
+old=center.slice();
+frames=0;
+ellipselemente=[];
+stachelelemente=[];
+augenelemente=[];
+boostelemente=[];
+akt=new Date();
+full=true;
+kieferzahl=0;
+untersuchc=[];
+down=1;
+animation=10;
+kheight=75;
+kwidth=75;
+akthunger=75;
+akthealth=75;
+blinkmal=-1;
+blinkaktiv=0;
+healthmal=-1;
+healthaktiv=0;
+nitro=false;
+function displayelements(corner,fleischs,kreise){
+    //drawminiellip(xpos,ypos,winkel,context,img)
+    for (var a=0;a<fleischs.length;a++){
+        if (fleischs[a]){
+        var x=fleischs[a][0]-corner[0];
+        var y=fleischs[a][1]-corner[1];
+        var newcanv=document.createElement("canvas");
+        newcanv.id="K"+a;
+        newcanv.setAttribute("style",'position:absolute;left:'+(x/size)+'px;top:'+(y/size)+'px;width:'+(fleischs[a][2]*size)+'px;height:'+(fleischs[a][3]*size)+'px;');
+        document.body.appendChild(newcanv);
+        var c=document.getElementById("K"+a);
+        c.width=fleischs[a][2]*size;
+        c.height=fleischs[a][3]*size;
+        c.setAttribute("class","0,0");
+        var ctx=c.getContext("2d");
+        console.log(ctx);
+        }
+        //drawminiellipsizer(25*size,25*size,0,ctx,"Fleischrest.png");
+    }
+    for (var a=0;a<kreise.length;a++){
+        //drawminiellip(xpos,ypos,winkel,context,img)
+        var x=kreise[a][0]-corner[0];
+        var y=kreise[a][1]-corner[1];
+        var newcanv=document.createElement("canvas");
+        newcanv.id="C"+a;
+        newcanv.setAttribute("style",'position:absolute;left:'+(x/size)+'px;top:'+(y/size)+'px;width:'+(110*size)+'px;height:'+(110*size)+'px;');
+        document.body.appendChild(newcanv);
+        var c=document.getElementById("C"+a);
+        c.width=(110*size);
+        c.height=(110*size);
+        var ctx=c.getContext("2d");
+        drawminiellipsizer((110*size)/2,(110*size)/2,0,ctx,"images/shop.png");
+        console.log(ctx);
+        /*c.width=110*size;
+        c.height=110*size;
+        var ctx=c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(55*size,55*size,50*size,0,2*Math.PI);
+        ctx.fillStyle = '#D03000';
+        ctx.fill();
+        ctx.stroke();*/
+    }
+}
+function ellipsis(centerX,centerY,radius,context){
+    // save state
+context.save();
+
+// translate context
+context.translate(canvas.width / 2, canvas.height / 2);
+
+// scale context horizontally
+context.scale(2, 1);
+
+// draw circle which will be stretched into an oval
+context.beginPath();
+context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+
+// restore to original state
+context.restore();
+
+// apply styling
+context.fillStyle = '#2EBD29';
+context.fill();
+context.lineWidth = 5;
+context.strokeStyle = 'black';
+context.stroke();
+}
+function changeelements(corner,fleisch,kreise,fullsuch){
+    untersuch=[];
+    untersuchc=[];
+    for (var a=0;a<fleisch.length;a++){
+        if (!fleisch[a]){
+            continue;
+        }
+        var x=fleisch[a][0]-corner[0];
+        var y=fleisch[a][1]-corner[1];
+        if (fullsuch){
+            document.getElementById('K'+a).style.left=(x*size)+"px";
+            document.getElementById('K'+a).style.top=(y*size)+"px";
+        }
+        else{
+        if (x>(0-(bodyw/size)/5) && y>(0-(bodyh/size)/5) && x<(bodyw/size)+((bodyw/size)/5) && y<(bodyh/size)+((bodyh/size)/5)){
+            untersuch.push(a);
+            document.getElementById('K'+a).style.left=(x*size)+"px";
+            document.getElementById('K'+a).style.top=(y*size)+"px";
+        }
+        }
+    }
+    for (var a=0;a<kreise.length;a++){
+        var x=kreise[a][0]-corner[0];
+        var y=kreise[a][1]-corner[1];
+        if (fullsuch){
+            document.getElementById('C'+a).style.left=(x*size)+"px";
+            document.getElementById('C'+a).style.top=(y*size)+"px";
+        }
+        else{
+        if (x>(0-(bodyw/size)/3) && y>(0-(bodyh/size)/3) && x<(bodyw/size)+((bodyw/size)/3) && y<(bodyh/size)+((bodyh/size)/3)){
+            untersuchc.push(a);
+            document.getElementById('C'+a).style.left=(x*size)+"px";
+            document.getElementById('C'+a).style.top=(y*size)+"px";
+        }
+        }
+    }
+}
+function blitborders(corner){
+    document.getElementById("bt").style.left=(-corner[0]*size)+"px";
+    document.getElementById("bt").style.top=(-corner[1]*size)+"px";
+    document.getElementById("bt").style.width=(5000*size)+"px";
+    document.getElementById("bl").style.left=(-corner[0]*size)+"px";
+    document.getElementById("bl").style.top=(-corner[1]*size)+"px";
+    document.getElementById("bl").style.height=(5000*size)+"px";
+    document.getElementById("bb").style.left=(-corner[0]*size)+"px";
+    document.getElementById("bb").style.top=(5000*size)-(corner[1]*size)+"px";
+    document.getElementById("bb").style.width=(5000*size)+"px";
+    document.getElementById("br").style.left=(5000*size)-(corner[0]*size)+"px";
+    document.getElementById("br").style.top=(-corner[1]*size+"px");
+    document.getElementById("br").style.height=(5000*size)+"px";
+}
+function drawminiellip(xpos,ypos,winkel,context,img){
+    /*context.ellipse(xpos,ypos,20,10,(winkel /(180 / Math.PI))-Math.PI/2,0,2*Math.PI);
+    context.fillStyle = 'rgb(255,0,0)';
+    context.fill();
+    context.lineWidth = 5;
+    context.strokeStyle = 'rgb(0,0,255)';
+    context.stroke();*/
+    //DRI(image, x, y, angle,context)
+    var myimg=document.createElement("img");
+    myimg.id="lalat";
+    document.body.appendChild(myimg);
+    document.getElementById("lalat").setAttribute("src",img);
+    document.getElementById("lalat").style.visibility="hidden";
+    DRI(document.getElementById("lalat"),xpos,ypos,winkel,context,false,false);
+    document.getElementById("lalat").remove();
+}
+function drawminiellipsizer(xpos,ypos,winkel,context,img){
+    /*context.ellipse(xpos,ypos,20,10,(winkel /(180 / Math.PI))-Math.PI/2,0,2*Math.PI);
+    context.fillStyle = 'rgb(255,0,0)';
+    context.fill();
+    context.lineWidth = 5;
+    context.strokeStyle = 'rgb(0,0,255)';
+    context.stroke();*/
+    //DRI(image, x, y, angle,context)
+    var myimg=document.createElement("img");
+    myimg.id="lalat";
+    myimg.width=xpos*2;
+    myimg.height=ypos*2;
+    myimg.style.width=myimg.width;
+    myimg.style.height=myimg.height;
+    document.body.appendChild(myimg);
+    document.getElementById("lalat").setAttribute("src",img);
+    document.getElementById("lalat").style.visibility="hidden"; 
+    DRI(document.getElementById("lalat"),xpos,ypos,winkel,context,myimg.width,myimg.height);
+    document.getElementById("lalat").remove();
+}
+function zeichnemain(winkel){
+    //DRI(image, x, y, angle,context,width,height)
+    var canvas = document.getElementById('el1');
+    canvas.width=Math.max(eigenbreite,eigenhoehe);
+    canvas.height=Math.max(eigenbreite,eigenhoehe);
+    canvas.style.width=Math.max(eigenbreite,eigenhoehe)+"px";
+    canvas.style.height=Math.max(eigenbreite,eigenhoehe)+"px";
+    var context = canvas.getContext('2d');
+    context.clearRect(0, 0, 400, 400);
+    var myimg=document.createElement("img");
+    myimg.id="lalat";
+    ellipsx=Math.max(eigenbreite,eigenhoehe)/2;
+    ellipsy=Math.max(eigenbreite,eigenhoehe)/2;
+    myimg.width=eigenbreite;
+    myimg.height=eigenhoehe;
+    myimg.style.width=myimg.width;
+    myimg.style.height=myimg.height;
+    document.body.appendChild(myimg);
+    document.getElementById("lalat").setAttribute("src",eigenbild);
+    document.getElementById("lalat").style.visibility="hidden";
+    DRI(document.getElementById("lalat"),eigenhoehe/2,eigenhoehe/2,winkel,context,eigenbreite,eigenhoehe);
+    document.getElementById("lalat").remove();
+    /*context.clearRect(0, 0, 400, 400);
+    canvas.width=200;
+    canvas.height=200;
+    var centerX = 0;
+    var centerY = 0;
+    var radius = 50;
+    context.beginPath()
+    ellipsx=100;
+    ellipsy=100;
+    context.ellipse(ellipsx,ellipsy,60,30,(winkel /(180 / Math.PI))-Math.PI/2,0,2*Math.PI);
+    context.fillStyle = 'rgb(46,189,41)';
+    context.fill();
+    context.lineWidth = 5;
+    context.strokeStyle = '#333333';
+    context.stroke();*/
+    /*var canvas = document.getElementById('el5');
+    var context = canvas.getContext('2d');
+    canvas.width=200;
+    canvas.height=200;
+    context.beginPath()
+    var altx=130;
+    var alty=170;
+    var rad=Math.sqrt(Math.pow(altx-ellipsx,2)+Math.pow(alty-ellipsy,2));
+    //radians = degrees * (pi/180)
+    var neux=rad*Math.cos(winkel*(Math.PI/180)+Math.PI/2);
+    var neuy=rad*Math.sin(winkel*(Math.PI/180)+Math.PI/2);
+    //drawminiellip(ellipsx+neux,ellipsy+neuy,winkel,context);*/
+}
+function ellipspos(){
+    for (var a=0;a<ellipselemente.length;a++){
+        ellipselemente[a][3].width=kwidth;
+        ellipselemente[a][3].height=kheight;
+
+        var altx=ellipselemente[a][0];
+        var alty=ellipselemente[a][1];
+        var rad=Math.sqrt(Math.pow(altx-ellipsx,2)+Math.pow(alty-ellipsy,2));
+        var untenpunkt=[ellipsx,ellipsy+rad];
+        var grostrecke=Math.sqrt(Math.pow(untenpunkt[0]-altx,2)+Math.pow(untenpunkt[1]-alty,2));
+        var extrawinkel=Math.asin((grostrecke/2)/rad)* (180 / Math.PI)*2;
+        if (altx-ellipsx>0){
+            extrawinkel+=(180-extrawinkel)*2;
+        }
+        //extrawinkel+=180;
+        //degrees = radians * (180/pi)
+        //radians = degrees * (pi/180)
+        var neux=rad*Math.cos((0+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var neuy=rad*Math.sin((0+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var rect=getpos(document.getElementById("el1"));
+        ellipselemente[a][3].setAttribute("style","z-index:3;position:absolute;height:"+kheight+"px;width:"+kwidth+"px;top:"+(rect[1]+ellipsy+neuy-(kheight)/2)+"px;left:"+(rect[0]+ellipsx+neux-(kwidth/2)+"px;"));
+        //drawminiellip(ellipsx+neux,ellipsy+neuy,winkel,context);
+        ellipselemente[a][3].getContext('2d').beginPath();
+        drawminiellip((kwidth)/2,(kheight)/2,ellipselemente[a][2]+0,ellipselemente[a][3].getContext('2d'),ellipselemente[a][4]);
+    }
+}
+function stachelpos(){
+    for (var a=0;a<stachelelemente.length;a++){
+        stachelelemente[a][3].width=123;
+        stachelelemente[a][3].height=123;
+
+        var altx=stachelelemente[a][0];
+        var alty=stachelelemente[a][1];
+        var rad=Math.sqrt(Math.pow(altx-ellipsx,2)+Math.pow(alty-ellipsy,2));
+        var untenpunkt=[ellipsx,ellipsy+rad];
+        var grostrecke=Math.sqrt(Math.pow(untenpunkt[0]-altx,2)+Math.pow(untenpunkt[1]-alty,2));
+        var extrawinkel=Math.asin((grostrecke/2)/rad)* (180 / Math.PI)*2;
+        if (altx-ellipsx>0){
+            extrawinkel+=(180-extrawinkel)*2;
+        }
+        //extrawinkel+=180;
+        //degrees = radians * (180/pi)
+        //radians = degrees * (pi/180)
+        var neux=rad*Math.cos((0+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var neuy=rad*Math.sin((0+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var rect=getpos(document.getElementById("el1"));
+        stachelelemente[a][3].setAttribute("style","z-index:3;position:absolute;height:"+123+"px;width:"+123+"px;top:"+(rect[1]+ellipsy+neuy-(123)/2)+"px;left:"+(rect[0]+ellipsx+neux-(123/2)+"px;"));
+        //drawminiellip(ellipsx+neux,ellipsy+neuy,winkel,context);
+        stachelelemente[a][3].getContext('2d').beginPath();   
+        drawminiellip((123)/2,(123)/2,stachelelemente[a][2]+0,stachelelemente[a][3].getContext('2d'),stachelelemente[a][4]);
+    }
+}
+function augenpos(){
+    for (var a=0;a<augenelemente.length;a++){
+        augenelemente[a][3].width=60;
+        augenelemente[a][3].height=60;
+
+        var altx=augenelemente[a][0];
+        var alty=augenelemente[a][1];
+        var rad=Math.sqrt(Math.pow(altx-ellipsx,2)+Math.pow(alty-ellipsy,2));
+        var untenpunkt=[ellipsx,ellipsy+rad];
+        var grostrecke=Math.sqrt(Math.pow(untenpunkt[0]-altx,2)+Math.pow(untenpunkt[1]-alty,2));
+        var extrawinkel=Math.asin((grostrecke/2)/rad)* (180 / Math.PI)*2;
+        if (altx-ellipsx>0){
+            extrawinkel+=(180-extrawinkel)*2;
+        }
+        //extrawinkel+=180;
+        //degrees = radians * (180/pi)
+        //radians = degrees * (pi/180)
+        var neux=rad*Math.cos((0+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var neuy=rad*Math.sin((0+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var rect=getpos(document.getElementById("el1"));
+        augenelemente[a][3].setAttribute("style","z-index:3;position:absolute;height:"+60+"px;width:"+60+"px;top:"+(rect[1]+ellipsy+neuy-(60)/2)+"px;left:"+(rect[0]+ellipsx+neux-(60/2)+"px;"));
+        //drawminiellip(ellipsx+neux,ellipsy+neuy,winkel,context);
+        augenelemente[a][3].getContext('2d').beginPath();
+        drawminiellip((60)/2,(60)/2,augenelemente[a][2]+0,augenelemente[a][3].getContext('2d'),augenelemente[a][4]);
+    }
+}
+function boostpos(){
+    for (var a=0;a<boostelemente.length;a++){
+        boostelemente[a][3].width=123;
+        boostelemente[a][3].height=123;
+
+        var altx=boostelemente[a][0];
+        var alty=boostelemente[a][1];
+        var rad=Math.sqrt(Math.pow(altx-ellipsx,2)+Math.pow(alty-ellipsy,2));
+        var untenpunkt=[ellipsx,ellipsy+rad];
+        var grostrecke=Math.sqrt(Math.pow(untenpunkt[0]-altx,2)+Math.pow(untenpunkt[1]-alty,2));
+        var extrawinkel=Math.asin((grostrecke/2)/rad)* (180 / Math.PI)*2;
+        if (altx-ellipsx>0){
+            extrawinkel+=(180-extrawinkel)*2;
+        }
+        //extrawinkel+=180;
+        //degrees = radians * (180/pi)
+        //radians = degrees * (pi/180)
+        var neux=rad*Math.cos((0+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var neuy=rad*Math.sin((0+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var rect=getpos(document.getElementById("el1"));
+        boostelemente[a][3].setAttribute("style","z-index:3;position:absolute;height:"+123+"px;width:"+123+"px;top:"+(rect[1]+ellipsy+neuy-(123)/2)+"px;left:"+(rect[0]+ellipsx+neux-(123/2)+"px;"));
+        //drawminiellip(ellipsx+neux,ellipsy+neuy,winkel,context);
+        boostelemente[a][3].getContext('2d').beginPath();
+        drawminiellip((123)/2,(123)/2,boostelemente[a][2]+0,boostelemente[a][3].getContext('2d'),"images/rinboost.png");
+    }
+}
+function changecolor(image){
+    eigenbild=image;
+    zeichnemain(0);
+}
+function addbuyable(left,bottom,width,height,paddingleft,paddingtop,image,kosten,nr,nennen){ 
+    bodyw=window.innerWidth;
+    bodyh=window.innerHeight;
+    var canv=document.createElement('div');
+    canv.id="preis"+nr;
+    document.body.appendChild(canv);
+    var preis=document.getElementById("preis"+nr);
+    var canv=document.createElement('span');
+    canv.id="preiswert"+nr;
+    preis.appendChild(canv);
+    var canv=document.createElement('img');
+    canv.id="preisbild"+nr;
+    preis.appendChild(canv);
+    var wert=document.getElementById("preiswert"+nr);
+    var bild=document.getElementById("preisbild"+nr);
+    preis.setAttribute("style","-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;position: absolute; bottom:"+(bottom-7)+"vh;left:"+left+"px;font-size:2vh;z-index:7;");
+    wert.setAttribute("style","opacity:0.6;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;position:relative;font-size:4vh;top:-1vh;z-index:5;will-change: opacity, transform;-webkit-transition: all .3s ease-out;-moz-transition: all .3s ease-out;-o-transition: all .3s ease-out;-ms-transition: all .3s ease-out;transition: all .3s ease-out;");
+    wert.innerHTML=kosten+" ";
+    bild.setAttribute("style","opacity: 0.6;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;width:2vh;height:5vh;z-index:7;will-change: opacity, transform;-webkit-transition: all .3s ease-out;-moz-transition: all .3s ease-out;-o-transition: all .3s ease-out;-ms-transition: all .3s ease-out;transition: all .3s ease-out;");
+    bild.src="DNA.png";
+    var canv=document.createElement('div');
+    canv.id="name"+nr;
+    document.body.appendChild(canv);
+    var dername=document.getElementById("name"+nr);
+    dername.setAttribute("style","-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;position: absolute; bottom:"+(bottom+(((height+10)*100)/bodyh))+"vh;left:"+left+"px;font-size:2.5vh;z-index:7;");
+    dername.innerHTML=nennen;
+    var canv=document.createElement('canvas');
+    canv.id="klellip"+nr;
+    document.body.appendChild(canv);
+    var canvas=document.getElementById("klellip"+nr);
+    canvas.width=width;
+    canvas.height=height;
+    canvas.setAttribute('style','border-style:solid;border-color:grey;z-index:8;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;cursor:pointer;z-index:6;position:absolute;width:'+width+'px;height:'+height+'px;bottom:'+(bottom+((paddingtop/bodyh)*100))+'vh;left:'+(left+paddingleft)+'px;');
+    var ctx=canvas.getContext('2d');    
+    drawminiellip(width/2,height/2,0,ctx,image);
+    /*var canv=document.createElement('div');
+    canv.id="rectkiefer"+nr;
+    document.body.appendChild(canv);
+    canv.setAttribute("style","-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;position:absolute;bottom:"+bottom+"vh;left:"+left+"vw;width:"+75+"px;height:"+canvas.style.height+";border-style:solid;border-color:grey;background-color:transparent;border-size:1px;");*/    
+}
+function addskin(left,top,img,nr){
+    var canv=document.createElement('button');
+    canv.id="S"+nr;
+    document.body.appendChild(canv);
+    var style1=document.getElementById("S"+nr);
+    style1.setAttribute("style","position:absolute;top:"+top+"vh;left:"+left+"vh;background: url("+img+");background-size: 5vh 10vh;background-repeat: no-repeat;width:5.5vh;height:10.5vh;");
+    ellipsstyles.push(style1);        
+}
+function changebuiltmode(){
+    for (var a=0;a<fleischpos.length;a++){
+        if (!fleischpos[a]){
+            continue;
+        }
+        document.getElementById("K"+a).style.visibility="hidden";
+    }
+    for (var a=0;a<kreispos.length;a++){
+        document.getElementById("C"+a).style.visibility="hidden";
+    }
+    document.getElementById("healthbar").style.visibility="hidden";
+    document.getElementById("truehealth").style.visibility="hidden";
+    document.getElementById("hungerbar").style.visibility="hidden";
+    document.getElementById("truehunger").style.visibility="hidden";
+    clearInterval(maintask);
+    ellipspos();
+    stachelpos();
+    boostpos();
+    augenpos();
+    var width=parseInt(document.getElementById('el1').style.width)*2;
+    var height=parseInt(document.getElementById('el1').style.height)*2;
+    var top=document.getElementById('el1').style.top;
+    var left=document.getElementById('el1').style.left;
+    var gr=document.createElement('div');
+    gr.id="grorect";
+    document.body.appendChild(gr);
+    gr.setAttribute('style',"-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;z-index:5;cursor:crosshair;position:absolute;top:"+top+";left:"+left+";width:"+width+"px;height:"+height+"px;border-style: none;border-color:#333 ; background-color:transparent;margin-left:-"+(width/2)+"px;margin-top:-"+(height/2)+"px;");
+    zeichnemain(0);
+    var ready=document.createElement('div');
+    ready.id="ready";
+    document.body.appendChild(ready);
+    var fertig=document.getElementById("ready");
+    fertig.setAttribute('style','-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;cursor:pointer;position:absolute;top:80vh;left:80vw;width:10vh;height:10vh;background-color:darkblue;border-radius:50%; color:white;line-height:10vh;text-align:center;will-change: opacity, transform;-webkit-transition: all .3s ease-out;-moz-transition: all .3s ease-out;-o-transition: all .3s ease-out;-ms-transition: all .3s ease-out;transition: all .3s ease-out;font-size:2vh;');
+    fertig.innerHTML="READY";
+    exist=[[0,15,"meinkiefer2.png"],[1,10,"images/stachel.png"],[2,25,"images/rakboost.png"],[3,15,"images/dasaugesaurons.png"],[4,15,"images/theeye.png"]];
+    addbuyable(134,80,kwidth,kheight,0,0,"meinkiefer2.png",15,0,"Jaw");
+    addbuyable(223,80,123,123,0,0,"images/stachel.png",10,1,"Spike");
+    addbuyable(364,80,123,123,0,0,"images/rinboost.png",25,2,"Boost");
+    addbuyable(505,80,60,60,0,0,"images/dasaugesaurons.png",15,3,"Vision");
+    addbuyable(580,80,60,60,0,0,"images/theeye.png",15,4,"Vision");
+    //addbuyable(28,)      
+    /*var canv=document.createElement('button');
+    canv.id="S1";
+    document.body.appendChild(canv);
+    var style1=document.getElementById("S1");
+    style1.setAttribute("style","position:absolute;top:75vh;left:30vh;background: url(images/ellipsstyle1.png);background-size: 5vh 10vh;background-repeat: no-repeat;width:5.5vh;height:10.5vh;");
+    var canv=document.createElement('button');
+    canv.id="S2";
+    document.body.appendChild(canv);
+    var style2=document.getElementById("S2");
+    style2.setAttribute("style","position:absolute;top:75vh;left:36vh;background: url(images/ellipsstyle2.png);background-size: 5vh 10vh;background-repeat: no-repeat;width:5.5vh;height:10.5vh;");
+    var canv=document.createElement('button');
+    canv.id="S3";
+    document.body.appendChild(canv);
+    var style3=document.getElementById("S3");
+    style3.setAttribute("style","position:absolute;top:75vh;left:42vh;background: url(images/ellipsstyle3.png);background-size: 5vh 10vh;background-repeat: no-repeat;width:5.5vh;height:10.5vh;");
+    var canv=document.createElement('button');
+    canv.id="S4";
+    document.body.appendChild(canv);
+    var style4=document.getElementById("S4");
+    style4.setAttribute("style","position:absolute;top:75vh;left:48vh;background: url(images/ellipsstyle4.png);background-size: 5vh 10vh;background-repeat: no-repeat;width:5.5vh;height:10.5vh;");
+    var canv=document.createElement('button');
+    canv.id="S5";
+    document.body.appendChild(canv);
+    var style5=document.getElementById("S5");
+    style5.setAttribute("style","position:absolute;top:75vh;left:54vh;background: url(images/ellipsstyle5.png);background-size: 5vh 10vh;background-repeat: no-repeat;width:5.5vh;height:10.5vh;");
+    var canv=document.createElement('button');
+    canv.id="S6";
+    document.body.appendChild(canv);
+    var style6=document.getElementById("S6");
+    style6.setAttribute("style","position:absolute;top:75vh;left:60vh;background: url(images/ellipsstyle6.png);background-size: 5vh 10vh;background-repeat: no-repeat;width:5.5vh;height:10.5vh;");
+    var canv=document.createElement('button');
+    canv.id="S7";
+    document.body.appendChild(canv);
+    var style7=document.getElementById("S7");
+    style7.setAttribute("style","position:absolute;top:75vh;left:66vh;background: url(images/ellipsstyle7.png);background-size: 5vh 10vh;background-repeat: no-repeat;width:5.5vh;height:10.5vh;");
+    var canv=document.createElement('button');
+    canv.id="S8";
+    document.body.appendChild(canv);
+    var style8=document.getElementById("S8");
+    style8.setAttribute("style","position:absolute;top:75vh;left:72vh;background: url(images/ellipsstyle8.png);background-size: 5vh 10vh;background-repeat: no-repeat;width:5.5vh;height:10.5vh;");
+    var canv=document.createElement('button');
+    canv.id="S9";
+    document.body.appendChild(canv);
+    var style9=document.getElementById("S9");
+    style9.setAttribute("style","position:absolute;top:75vh;left:78vh;background: url(images/ellipsstyle9.png);background-size: 5vh 10vh;background-repeat: no-repeat;width:5.5vh;height:10.5vh;");
+    var canv=document.createElement('button');
+    canv.id="S10";
+    document.body.appendChild(canv);
+    var style10=document.getElementById("S10");
+    style10.setAttribute("style","position:absolute;top:75vh;left:84vh;background: url(images/ellipsstyle10.png);background-size: 5vh 10vh;background-repeat: no-repeat;width:5.5vh;height:10.5vh;");
+    var canv=document.createElement('button');
+    canv.id="S11";
+    document.body.appendChild(canv);
+    var style11=document.getElementById("S11");
+    style11.setAttribute("style","position:absolute;top:75vh;left:90vh;background: url(images/ellipsstyle11.png);background-size: 5vh 10vh;background-repeat: no-repeat;width:5.5vh;height:10.5vh;");*/
+    ellipsstyles=[];
+    for (var a=1;a<12;a++){
+        addskin(24+(a*6),75,"images/ellipsstyle"+a+".png",a);    
+    }
+    for (var a=0;a<ellipsstyles.length;a++){
+        var temp=a+1;
+        document.getElementById("S"+temp).setAttribute("onclick","changecolor('images/ellipsstyle"+temp+".png')");
+    }
+    clonewalk=false;
+    rechtsdreh=false;
+    linksdreh=false;
+    builttask=setInterval(builtmode, 10);
+    kieferpreis=15;
+    gangs=0;
+    killgangs=-1;
+}
+function changemaintask(){
+    nitro=false;
+    if (isset(document.getElementById("verkauft"))){
+        document.getElementById("verkauft").remove();    
+    }
+    document.getElementById("healthbar").style.visibility="visible";
+    document.getElementById("truehealth").style.visibility="visible";
+    document.getElementById("hungerbar").style.visibility="visible";
+    document.getElementById("truehunger").style.visibility="visible";
+    document.getElementById('grorect').remove();
+    for (a=0;a<exist.length;a++){
+        var zahl=exist[a][0];
+        var bild=exist[a][1];
+        document.getElementById("klellip"+zahl).remove();
+        //document.getElementById("rectkiefer"+zahl).remove();
+        document.getElementById("preis"+zahl).remove();
+        document.getElementById("name"+zahl).remove();        
+    }
+    document.getElementById("ready").remove();
+    for (var a=0;a<ellipsstyles.length;a++){
+        ellipsstyles[a].remove();
+    }
+    for (var a=0;a<fleischpos.length;a++){
+        if (!fleischpos[a]){
+            continue;
+        }
+        document.getElementById("K"+a).style.visibility="visible";
+    }
+    for (var a=0;a<kreispos.length;a++){
+        document.getElementById("C"+a).style.visibility="visible";
+    }
+    position=[2000,2000];
+    full=true;
+    untersuch=[];
+    untersuchc=[]
+    window.clearInterval(builttask);
+    maintask=setInterval(winkelfind,10);
+}
+function builtmode(){
+    frames++;
+    gangs++;
+    if (gangs==killgangs){
+        if (document.getElementById("verkauft")!==null){
+            document.getElementById("verkauft").remove();    
+        }
+    }
+    var geld=parseInt(document.getElementById("dna").innerHTML);
+    for (var a=0;a<exist.length;a++){
+        var zahl=exist[a][0];
+        var dingpreis=exist[a][1];
+        var dingbild=exist[a][2];
+        if (geld>=dingpreis){
+            document.getElementById("preisbild"+zahl).src="DNA.png";
+            document.getElementById("preisbild"+zahl).style.opacity = "0.9";
+            document.getElementById("preiswert"+zahl).style.color="black";
+            document.getElementById("preiswert"+zahl).style.opacity = "0.9";
+            document.getElementById("klellip"+zahl).style.cursor="pointer";
+        }
+        else{
+            document.getElementById("preisbild"+zahl).src="DNArot.png";
+            document.getElementById("preisbild"+zahl).style.opacity = "0.5";
+            document.getElementById("preiswert"+zahl).style.color="red";
+            document.getElementById("preiswert"+zahl).style.opacity = "0.5";
+            document.getElementById("klellip"+zahl).style.cursor="not-allowed";
+        }    
+    }
+    document.getElementById("klellip0").onmousedown=function(){
+        zahl=0;
+        dingpreis=15;
+        dingbild="meinkiefer2.png";
+        if (geld>=dingpreis){
+            clone=document.getElementById("klellip"+zahl).cloneNode(true);
+            clone.style.border="none";
+            clone.id=("clone");
+            clone.style.cursor = "none";
+            var ctx=clone.getContext('2d');
+            dasbild=dingbild;
+            drawminiellip(clone.width/2,clone.height/2,0,ctx,dingbild);
+            derwinkel=0;
+            bezahltpreis=dingpreis;
+            document.body.appendChild(clone);
+            clonewalk=zahl;
+            geld-=dingpreis;
+            document.getElementById("dna").innerHTML=geld+"";
+        }
+        };
+    document.getElementById("klellip1").onmousedown=function(){
+        zahl=1;
+        dingpreis=10;
+        dingbild="images/stachel.png";
+        if (geld>=dingpreis){
+            clone=document.getElementById("klellip"+zahl).cloneNode(true);
+            clone.style.border="none";
+            clone.id=("clone");
+            clone.style.cursor = "none";
+            dasbild=dingbild;
+            bezahltpreis=dingpreis;
+            var ctx=clone.getContext('2d');
+            drawminiellip(clone.width/2,clone.height/2,0,ctx,dingbild);
+            derwinkel=0;
+            document.body.appendChild(clone);
+            clonewalk=zahl;
+            geld-=dingpreis;
+            document.getElementById("dna").innerHTML=geld+"";
+        }
+        };
+    document.getElementById("klellip2").onmousedown=function(){
+        zahl=2;
+        dingpreis=25;
+        dingbild="images/rakboost.png";
+        if (geld>=dingpreis){
+            clone=document.getElementById("klellip"+zahl).cloneNode(true);
+            clone.style.border="none";
+            clone.id=("clone");
+            clone.style.cursor = "none";
+            dasbild=dingbild;
+            bezahltpreis=dingpreis;
+            var ctx=clone.getContext('2d');
+            drawminiellip(clone.width/2,clone.height/2,0,ctx,dingbild);
+            derwinkel=0;
+            document.body.appendChild(clone);
+            clonewalk=zahl;
+            geld-=dingpreis;
+            document.getElementById("dna").innerHTML=geld+"";
+        }
+        };
+    document.getElementById("klellip3").onmousedown=function(){
+        zahl=3;
+        dingpreis=15;
+        dingbild="images/dasaugesaurons.png";
+        if (geld>=dingpreis){
+            clone=document.getElementById("klellip"+zahl).cloneNode(true);
+            clone.style.border="none";
+            clone.id=("clone");
+            clone.style.cursor = "none";
+            dasbild=dingbild;
+            bezahltpreis=dingpreis;
+            var ctx=clone.getContext('2d');
+            drawminiellip(clone.width/2,clone.height/2,0,ctx,dingbild);
+            derwinkel=0;
+            document.body.appendChild(clone);
+            clonewalk=zahl;
+            geld-=dingpreis;
+            document.getElementById("dna").innerHTML=geld+"";
+        }
+        };
+    document.getElementById("klellip4").onmousedown=function(){
+        zahl=4;
+        dingpreis=15;
+        dingbild="images/theeye.png";
+        if (geld>=dingpreis){
+            clone=document.getElementById("klellip"+zahl).cloneNode(true);
+            clone.style.border="none";
+            clone.id=("clone");
+            clone.style.cursor = "none";
+            dasbild=dingbild;
+            bezahltpreis=dingpreis;
+            var ctx=clone.getContext('2d');
+            drawminiellip(clone.width/2,clone.height/2,0,ctx,dingbild);
+            derwinkel=0;
+            document.body.appendChild(clone);
+            clonewalk=zahl;
+            geld-=dingpreis;
+            document.getElementById("dna").innerHTML=geld+"";
+        }
+        };
+    if (parseInt((new Date()).getMilliseconds())<parseInt((akt).getMilliseconds())){
+        document.getElementById("frames").innerHTML=frames+"fps";
+        frames=0;
+    }
+    akt=new Date();
+    document.getElementById("grorect").onmousedown=function(){
+        if (clonewalk!==false){
+            return;
+        }
+        var mini=document.createElement('canvas');
+        mini.id="mini";
+        document.body.appendChild(mini);
+        var mini=document.getElementById('mini');
+        mini.width=1;
+        mini.height=1;
+        mini.setAttribute("style","position:absolute;top:"+pos[1]+"px;left:"+pos[0]+"px;width:1px;height:1px;visibility:hidden;");
+        var mctx=mini.getContext("2d");
+        mctx.fillStyle="rgb(120,20,20)";
+        mctx.fillRect(0,0,2,2);
+        for (var b=0;b<ellipselemente.length;b++){
+            var temp=ellipselemente[b];
+            var trect=getpos(temp[3]);
+            if (myIPS(temp[3].getContext("2d"),trect[0],trect[1],temp[3].offsetWidth,temp[3].offsetHeight,mctx,pos[0],pos[1],1,1)){
+                clone=document.getElementById("klellip0").cloneNode(true);
+                clone.style.border="none";
+                clone.id=("clone");
+                clone.style.cursor = "none";
+                var ctx=clone.getContext('2d');
+                derwinkel=temp[2];
+                drawminiellip(clone.width/2,clone.height/2,derwinkel,ctx,"meinkiefer2.png");
+                document.body.appendChild(clone);
+                clonewalk=0;
+                dasbild="meinkiefer2.png";
+                bezahltpreis=15;
+                ellipselemente.splice(b,1);
+                ellipspos();
+                temp[3].remove();
+                return;
+            }
+        }
+        for (var b=0;b<stachelelemente.length;b++){
+            var temp=stachelelemente[b];
+            var trect=getpos(temp[3]);
+            if (myIPS(temp[3].getContext("2d"),trect[0],trect[1],temp[3].offsetWidth,temp[3].offsetHeight,mctx,pos[0],pos[1],1,1)){
+                clone=document.getElementById("klellip1").cloneNode(true);
+                clone.style.border="none";
+                clone.id=("clone");
+                clone.style.cursor = "none";
+                var ctx=clone.getContext('2d');
+                derwinkel=temp[2];
+                drawminiellip(clone.width/2,clone.height/2,derwinkel,ctx,"images/stachel.png");
+                document.body.appendChild(clone);
+                clonewalk=1;
+                dasbild="images/stachel.png";
+                bezahltpreis=10;
+                stachelelemente.splice(b,1);
+                stachelpos();
+                temp[3].remove();
+                return;
+            }
+        }
+        for (var b=0;b<boostelemente.length;b++){
+            var temp=boostelemente[b];
+            var trect=getpos(temp[3]);
+            if (myIPS(temp[3].getContext("2d"),trect[0],trect[1],temp[3].offsetWidth,temp[3].offsetHeight,mctx,pos[0],pos[1],1,1)){
+                clone=document.getElementById("klellip2").cloneNode(true);
+                clone.style.border="none";
+                clone.id=("clone");
+                clone.style.cursor = "none";
+                var ctx=clone.getContext('2d');
+                derwinkel=temp[2];
+                drawminiellip(clone.width/2,clone.height/2,derwinkel,ctx,"images/rakboost.png");
+                document.body.appendChild(clone);
+                clonewalk=2;
+                dasbild="images/rakboost.png";
+                bezahltpreis=25;
+                boostelemente.splice(b,1);
+                boostpos();
+                temp[3].remove();
+                return;
+            }
+        }    
+        for (var b=0;b<augenelemente.length;b++){
+            var temp=augenelemente[b];
+            var trect=getpos(temp[3]);
+            if (myIPS(temp[3].getContext("2d"),trect[0],trect[1],temp[3].offsetWidth,temp[3].offsetHeight,mctx,pos[0],pos[1],1,1)){
+                clone=document.getElementById("klellip3").cloneNode(true);
+                clone.style.border="none";
+                clone.id=("clone");
+                clone.style.cursor = "none";
+                var ctx=clone.getContext('2d');
+                derwinkel=temp[2];
+                console.log(augenelemente[0]);
+                drawminiellip(clone.width/2,clone.height/2,derwinkel,ctx,temp[4]);
+                document.body.appendChild(clone);
+                if (temp[4]=="images/theeye.png" || temp[4]=="images/theeyeanders.png"){
+                    clonewalk=4;    
+                }
+                else{
+                    clonewalk=3;    
+                }
+                
+                dasbild=temp[4];
+                bezahltpreis=15;
+                if (isset(augenelemente[b][6])){
+                    augenelemente[augenelemente[b][6]][3].remove();
+                    temp[3].remove();
+                    augenelemente.splice(Math.min(augenelemente[b][6],b),2);
+                }
+                else{
+                    temp[3].remove();
+                    augenelemente.splice(b,1);    
+                }
+                augenpos();
+                return;
+            }
+        }
+    }
+    if (clonewalk!==false){
+            //myIPS(ctx,x,y,width,height,ctx2,x2,y2,width2,height2)
+            spiegelda=true;
+            var clonectx=clone.getContext('2d');
+            var mainel=document.getElementById('el1');
+            var rect=getpos(mainel);
+            var mainctx=mainel.getContext('2d');
+            if (myIPS(clonectx,parseInt(clone.style.left),parseInt(clone.style.top),parseInt(clone.style.width),parseInt(clone.style.height),mainctx,rect[0],rect[1],parseInt(mainel.style.width),parseInt(mainel.style.height))){
+                clone.style.cursor="none";
+                if (clonewalk==3 || clonewalk==4){
+                    if (clonewalk==3){
+                        var bildnr1="images/augesauronlinks.png";
+                        var bildnr2="images/dasaugesaurons.png";
+                    }
+                    if (clonewalk==4){
+                        var bildnr1="images/theeyeanders.png";
+                        var bildnr2="images/theeye.png";
+                    }
+                    var mitte=[bodyw/2,bodyh/2];
+                    if (derwinkel>=0){
+                        if (derwinkel%180<45 || derwinkel%180>135){
+                            var lr=true;
+                        }       
+                    }
+                    else{
+                        if ((-derwinkel)%(180)<45 || (-derwinkel)%(180)>135){
+                            var lr=true;    
+                        }    
+                    }
+                    if (lr){
+                        if (mitte[0]-pos[0]<10&&mitte[0]-pos[0]>-10){
+                            spiegelda=false; 
+                            if (isset(document.getElementById("spiegel"))){
+                                document.getElementById("spiegel").remove();
+                            }   
+                        }
+                        if (pos[0]<mitte[0]){
+                            createort=[mitte[0]+((mitte[0])-(pos[0]+clone.width/2)),pos[1]-clone.height/2];
+                            var neubild=bildnr1;
+                            anderbild=bildnr2;
+                        }
+                        else{
+                            createort=[mitte[0]+((mitte[0])-(pos[0]+clone.width/2)),pos[1]-clone.height/2];
+                            var neubild=bildnr2;
+                            anderbild=bildnr1;
+                        }    
+                        spiegelwinkel=-(derwinkel%180);
+                    }
+                    else{
+                        if (mitte[1]-pos[1]<10&&mitte[1]-pos[1]>-10){
+                            spiegelda=false;
+                            if (isset(document.getElementById("spiegel"))){
+                                document.getElementById("spiegel").remove();
+                            }
+                        }
+                        if (pos[1]<mitte[1]){
+                            createort=[(parseInt(clone.style.left)),mitte[1]+((mitte[1])-(pos[1]+clone.height/2))];
+                            var neubild=bildnr1;
+                            anderbild=bildnr2;
+                        } 
+                        else{
+                            createort=[(parseInt(clone.style.left)),mitte[1]+((mitte[1])-(pos[1]+clone.height/2))];
+                            var neubild=bildnr2;
+                            anderbild=bildnr1;
+                        }  
+                        spiegelwinkel=-((derwinkel%180)+180); 
+                    }
+                    if (spiegelda){
+                    clone.width=clone.width;
+                    drawminiellip(clone.width/2,clone.height/2,derwinkel,clonectx,neubild,10);
+                    if (!isset(document.getElementById("spiegel"))){
+                        spiegel=document.createElement("canvas");
+                        spiegel.id="spiegel";
+                        document.body.appendChild(spiegel);    
+                    }
+                    spiegel.setAttribute("style","z-index:"+clone.style.zIndex+";position:absolute;left:"+createort[0]+"px;top:"+createort[1]+"px;width:"+clone.style.width+";height"+clone.style.height+";");
+                    spiegel.width=clone.width;
+                    spiegel.height=clone.height;
+                    var spctx=spiegel.getContext("2d");
+                    drawminiellip(spiegel.width/2,spiegel.height/2,spiegelwinkel,spctx,anderbild,10);
+                    dasbild=neubild;
+                    }
+                }
+            }
+            else{
+                if (clonewalk==3 || clonewalk==4){
+                    if (isset(document.getElementById("spiegel"))){
+                        document.getElementById("spiegel").remove();    
+                    }
+                }
+                clone.style.cursor="not-allowed";
+            }
+    }
+    document.body.onmouseup = function() {
+        if (clonewalk!==false){
+            //myIPS(ctx,x,y,width,height,ctx2,x2,y2,width2,height2)
+            var clonectx=clone.getContext('2d');
+            var mainel=document.getElementById('el1');
+            var rectclone=getpos(clone);
+            var rect=getpos(mainel);
+            var mainctx=mainel.getContext('2d');
+            if (myIPS(clonectx,parseInt(clone.style.left),parseInt(clone.style.top),parseInt(clone.style.width),parseInt(clone.style.height),mainctx,rect[0],rect[1],parseInt(mainel.style.width),parseInt(mainel.style.height))){
+                var clonemidpos=[parseInt(clone.style.left)+parseInt(clone.style.width)/2,parseInt(clone.style.top)+parseInt(clone.style.height)/2];
+                var neucanv=document.createElement('canvas');
+                neucanv.id="whatever";
+                document.body.appendChild(neucanv);
+                if (clonewalk===0){
+                    ellipselemente.push([clonemidpos[0]-rect[0],clonemidpos[1]-rect[1],derwinkel,neucanv,dasbild,10]);
+                    ellipspos();    
+                }
+                if (clonewalk==1){
+                    stachelelemente.push([clonemidpos[0]-rect[0],clonemidpos[1]-rect[1],derwinkel,neucanv,dasbild,10]);
+                    stachelpos();    
+                }
+                if (clonewalk==2){
+                    boostelemente.push([clonemidpos[0]-rect[0],clonemidpos[1]-rect[1],derwinkel,neucanv,dasbild,10]);
+                    boostpos();
+                }
+                if (clonewalk==3 || clonewalk==4){
+                    if (isset(augenelemente[0])){
+                        var tp=augenelemente.length;    
+                    }
+                    else{
+                        var tp=0;
+                    }
+                    if (spiegelda){
+                        augenelemente.push([clonemidpos[0]-rect[0],clonemidpos[1]-rect[1],derwinkel,neucanv,dasbild,10,tp+1]);    
+                    }
+                    else{
+                        augenelemente.push([clonemidpos[0]-rect[0],clonemidpos[1]-rect[1],derwinkel,neucanv,dasbild,10]);    
+                    }
+                    console.log(dasbild,anderbild);
+                    if (isset(document.getElementById("spiegel"))){
+                        var neucanv2=document.createElement('canvas');
+                        neucanv2.id="whatever2";
+                        document.body.appendChild(neucanv2);
+                        augenelemente.push([createort[0]+document.getElementById("spiegel").width/2-rect[0],createort[1]+document.getElementById("spiegel").height/2-rect[1],spiegelwinkel,neucanv2,anderbild,10,tp]);
+                        document.getElementById("spiegel").remove();    
+                    }
+                    augenpos();    
+                }
+            }
+            else{
+                geld+=bezahltpreis;
+                document.getElementById("dna").innerHTML=geld+"";
+                if (document.getElementById("verkauft")===null){
+                    var verkauft=document.createElement("div");
+                    verkauft.id="verkauft";       
+                    verkauft.innerHTML="+"+bezahltpreis;
+                    verkauft.setAttribute("style","position:absolute;left:"+rectclone[0]+"px;top:"+rectclone[1]+"px;font-size:3vh;");
+                    document.body.appendChild(verkauft);
+                    killgangs=gangs+60;    
+                }
+            }
+            clone.remove();
+        }
+        clonewalk=false;
+    }
+    document.body.onkeyup = function(){
+        var code = event.which || event.keyCode;
+        if (code==39){
+            rechtsdreh=false;
+        }
+        if (code==37){
+            linksdreh=false;
+        }
+    }
+    document.body.onkeydown = function(){
+        if (clonewalk!==false){
+        var code = event.which || event.keyCode;
+        if (code==39){
+            rechtsdreh=true;
+            linksdreh=false;
+        }
+        if (code==37){
+            linksdreh=true;
+            rechtsdreh=false;
+        }}
+    }
+    var fertig=document.getElementById("ready");
+    var rectlt=getpos(ready);
+    var rectwh=[fertig.offsetWidth,fertig.offsetHeight];
+    if (pos[0]>rectlt[0] && pos[0]<rectlt[0]+rectwh[0] && pos[1]>rectlt[1] && pos[1]<rectlt[1]+rectwh[1]){
+        fertig.style.backgroundColor="blue";
+    }
+    else{
+        fertig.style.backgroundColor="darkblue";
+    }
+    fertig.onmousedown=function(){
+        changemaintask();
+    };
+    if (rechtsdreh){
+        derwinkel+=1;
+        var ctx=clone.getContext('2d');
+        clone.width=clone.width;
+        drawminiellip(clone.width/2,clone.height/2,derwinkel,ctx,dasbild);
+    }
+    if (linksdreh){
+        derwinkel-=1;
+        var ctx=clone.getContext('2d');
+        clone.width=clone.width;
+        drawminiellip(clone.width/2,clone.height/2,derwinkel,ctx,dasbild);
+    }
+    if (clonewalk!==false){
+        clone.style.left=(pos[0]-parseInt(clone.style.width)/2)+"px";
+        clone.style.top=(pos[1]-parseInt(clone.style.height)/2)+"px";
+    }
+}
+function bewegen(altpos,eigenpos,mousepos,speed){
+    var hori=((mousepos[0]-eigenpos[0])/100)*speed;
+    var verti=((mousepos[1]-eigenpos[1])/100)*speed;
+    if (altpos[0]+hori>5000 || altpos[0]+hori<0){
+        hori=0;
+    }
+    if (altpos[1]+verti>5000 || altpos[1]+verti<0){
+        verti=0;
+    }
+    neupos=[altpos[0]+hori,altpos[1]+verti];
+    return neupos;
+}
+function detectcollision(ellipsiscenter,ellipsiswidth,ellipsisheight,circlecenter,circleradius,drehung){
+    var neucc=[circlecenter[0]-ellipsiscenter[0],circlecenter[1]-ellipsiscenter[1]];
+    var neuec=[0,0];
+    var alpha=drehung;
+    var beta=(180-drehung)/2;
+    var hyp=Math.sqrt(Math.pow(neucc[0],2)+Math.pow(neucc[2],2));
+    //alpha=gegen/hyp
+
+}
+durchgaenge=0;
+ausblend=-1;
+ausblend2=-1;
+function winkelfind(){
+    /*altsize=size;
+    size=parseInt(document.getElementById("sizechange").value);
+    if (altsize!=size){
+        clearall();
+    }          */
+    speedi=1;
+    frames++;
+    durchgaenge++;
+    document.body.onkeydown = function(){
+        var code = event.which || event.keyCode;
+        if (code==78){
+            nitro=true;
+        }
+    }
+    document.body.onkeyup = function(){
+        var code = event.which || event.keyCode;
+        if (code==78){
+            nitro=false;
+        }
+    }
+    akthunger-=0.005;
+    if (akthunger>100){
+        akthunger=100;
+    }
+    if (akthunger<0){
+        akthunger=0;
+    }
+    if (akthunger==0){
+        akthealth-=0.05;    
+    }
+    if (akthealth>100){
+        akthealth=100;
+    }
+    if (durchgaenge==blinkmal){
+        if (blinkaktiv){
+            document.getElementById("truehunger").style.backgroundColor="red";
+            document.getElementById("truehunger").style.borderColor="red"; 
+            blinkaktiv=0;   
+        }
+        else{
+            document.getElementById("truehunger").style.backgroundColor="#DABD30";
+            document.getElementById("truehunger").style.borderColor="#DABD30";
+            blinkaktiv=1;    
+        }    
+    }
+    if (akthunger<25){
+        if (blinkmal<durchgaenge){
+            blinkmal=durchgaenge+60;   
+        }
+    }
+    else{
+        document.getElementById("truehunger").style.borderColor="#DABD30"; 
+        document.getElementById("truehunger").style.backgroundColor="#DABD30";   
+    }
+    if (durchgaenge==healthmal){
+        if (healthaktiv){
+            document.getElementById("truehealth").style.backgroundColor="red";
+            document.getElementById("truehealth").style.borderColor="red";
+            healthaktiv=0;
+        }
+        else{
+            document.getElementById("truehealth").style.backgroundColor="#DABD30";
+            document.getElementById("truehealth").style.borderColor="#DABD30";
+            healthaktiv=1;
+        }
+    }
+    if (akthealth<25){
+        if (healthmal<durchgaenge){
+            healthmal=durchgaenge+60;
+        }
+    }
+    else{
+        document.getElementById("truehealth").style.borderColor="red";
+        document.getElementById("truehealth").style.backgroundColor="red";
+    }
+    document.getElementById("truehunger").style.width=((akthunger/100)*30)+"vw";
+    document.getElementById("truehealth").style.width=((akthealth/100)*30)+"vw";
+    if (durchgaenge==ausblend){
+        document.getElementById("+1").style.color="transparent";
+    }
+    if (durchgaenge==ausblend2){
+        document.getElementById("+dna").style.fontSize="0vh";
+        document.getElementById("dnabild").style.height="0vh";
+    }
+    if (parseInt((new Date()).getMilliseconds())<parseInt((akt).getMilliseconds())){
+        document.getElementById("frames").innerHTML=frames+"fps";
+        frames=0;
+    }
+    akt=new Date();
+    /*var canvas = document.getElementById('el1');
+    context = canvas.getContext('2d');
+    /*context.beginPath();
+    context.arc(50,50,750,0,2*Math.PI);
+    context.fillStyle = '#D03000';
+    if (a==0){
+        context.fillStyle = '#1613C9';
+    }
+    context.fill();
+    context.stroke();
+    var centerX = 0;
+    var centerY = 0;
+    var radius = 50;
+    ellipsis(centerX,centerY,radius,context);
+    ellipsis(50,50,20,context);*/
+    /*var ctx2try=ctx2.getImageData(0,0,100,100);
+    for (var d=0;d<ctx2try.data.length;d++){
+        if (ctx2try.data[d]==0){
+        }
+    }*/
+    /*if (frames%10==0){
+        if (kieferzahl==3){
+            down=-1;
+        }
+        if (kieferzahl==0){
+            down=1;
+        }
+        kieferzahl+=down;
+        if (kieferzahl==0){
+            document.getElementById("kiefer").setAttribute("src","kieferzu.png");
+        }
+        if (kieferzahl==1){
+            document.getElementById("kiefer").setAttribute("src","meinkiefer3.png");
+        }
+        if (kieferzahl==2){
+            document.getElementById("kiefer").setAttribute("src","kieferleichtoffen3.png");
+        }
+        if (kieferzahl==3){
+            document.getElementById("kiefer").setAttribute("src","kieferweitoffen3.png");
+        }
+    }*/
+    for (var b=0;b<untersuchc.length;b++){
+        var a=untersuchc[b];
+        cw1=document.getElementById('el1');
+        cw2=document.getElementById('C'+a);
+        //cw3=document.getElementById('el5');
+        ctx1=cw1.getContext('2d');
+        ctx2=cw2.getContext('2d');
+        var rect=getpos(document.getElementById("el1"));
+        var rect2=[parseInt(document.getElementById("C"+a).style.left),parseInt(document.getElementById("C"+a).style.top)];
+        var pixelcol=myIPS(ctx1,rect[0],rect[1],parseInt(cw1.style.width),parseInt(cw1.style.height),ctx2,rect2[0],rect2[1],parseInt(cw2.style.width),parseInt(cw2.style.height));
+        if (pixelcol){
+                changebuiltmode();
+                return;
+        }
+    }
+    var splicer=[];
+    for (var b=0;b<untersuch.length;b++){
+        var a=untersuch[b];
+        cw1=document.getElementById('el1');
+        cw2=document.getElementById('K'+a);
+        //cw3=document.getElementById('el5');
+        ctx1=cw1.getContext('2d');
+        ctx2=cw2.getContext('2d');
+        //ctx3=cw3.getContext('2d');
+        var rect=getpos(document.getElementById("el1"));
+        var rect2=[parseInt(document.getElementById("K"+a).style.left),parseInt(document.getElementById("K"+a).style.top)];
+        var rect2wh=[document.getElementById("K"+a).clientWidth,document.getElementById("K"+a).clientHeight];
+        var pixelding=usepixelips(ctx1,rect[0],rect[1],parseInt(cw1.style.width),parseInt(cw1.style.height),ctx2,rect2[0],rect2[1],parseInt(cw2.style.width),parseInt(cw2.style.height));
+        if (pixelding!=false){
+            cw2.setAttribute("class",((pixelding[0])/(size+(fleischpos[a][2])/30))+","+((pixelding[1])/(size+(fleischpos[a][2])/30)));
+            document.getElementById("K"+a).style.left=(parseInt(document.getElementById("K"+a).style.left)+(pixelding[0])/(size+(fleischpos[a][2])/10))+"px";
+            fleischpos[a][0]+=(pixelding[0]*2)/((size+(fleischpos[a][2])/30)*(size+(fleischpos[a][2])/30));
+            speedi=(speedi*2)/((size+(fleischpos[a][2])/30)*(size+(fleischpos[a][2])/30));
+            document.getElementById("K"+a).style.top=(parseInt(document.getElementById("K"+a).style.top)+(pixelding[1])/(size+(fleischpos[a][2])/10))+"px";
+            fleischpos[a][1]+=(pixelding[1]*2)/((size+(fleischpos[a][2])/30)*(size+(fleischpos[a][2])/30));
+            var rect2=[parseInt(document.getElementById("K"+a).style.left),parseInt(document.getElementById("K"+a).style.top)];
+        }
+        else{
+            var theclass=cw2.className;
+            var gespl=theclass.split(",");
+            var nehm1=parseFloat(gespl[0]);
+            var nehm2=parseFloat(gespl[1]);
+            fleischpos[a][0]+=nehm1;
+            document.getElementById("K"+a).style.left=(parseFloat(document.getElementById("K"+a).style.left)+nehm1)+"px";
+            fleischpos[a][1]+=nehm2;
+            document.getElementById("K"+a).style.top=(parseFloat(document.getElementById("K"+a).style.top)+nehm2)+"px";
+            cw2.className=(parseFloat(gespl[0])/1.03)+","+(parseFloat(gespl[1])/1.03);
+        }
+        //var rect3=getpos(document.getElementById("el5"));
+        pixelcol2=false;
+            for (var y=0;y<ellipselemente.length;y++){
+                var temp=ellipselemente[y];
+                var rect3=getpos(temp[3]);
+                if (rect2wh[0]>50){
+                    break;
+                }
+                if (myIPS(temp[3].getContext('2d'),rect3[0],rect3[1],parseInt(temp[3].style.width),parseInt(temp[3].style.height),ctx2,rect2[0],rect2[1],parseInt(cw2.style.width),parseInt(cw2.style.height))){
+                    pixelcol2=true;
+                    dnaplus=Math.random()*rect2wh[0];
+                    akthunger+=(rect2wh[0])/3;
+                    akthealth+=(rect2wh[0])/6;
+                    splicer.push(a);
+                    if (dnaplus>12.5){
+                        document.getElementById("dna").innerHTML=(parseInt(document.getElementById("dna").innerHTML)+1)+"";
+                        document.getElementById("+1").style.color="black";
+                        ausblend=durchgaenge+60;
+                        //if (ellipselemente[y][5]>=6){
+                            ellipselemente[y][5]=0;
+                        //}    
+                    }
+                    else{
+                        document.getElementById("+dna").style.fontSize="3vh";
+                        document.getElementById("dnabild").style.height="3.5vh";
+                        ausblend2=durchgaenge+60;
+                        ellipselemente[y][5]=0;        
+                    }
+                    size=size/1.01;
+                    clearall();
+                    break;
+
+                }
+            }
+            if (pixelcol2){
+                var c=document.getElementById("K"+a);
+                var ctx=c.getContext("2d");
+                //drawminiellipsizer(25*size,25*size,0,ctx,"Fleischrest.png");
+            }
+            else{
+                var c=document.getElementById("K"+a);
+                var ctx=c.getContext("2d");
+                drawminiellipsizer((fleischpos[a][2]*size)/2,(fleischpos[a][2]*size/2),Math.floor(Math.random*180),ctx,"Fleischrest.png");
+            }
+    }
+    for (var a=0;a<splicer.length;a++){
+        document.getElementById("K"+splicer[a]).remove();
+        fleischpos[splicer[a]]=false;
+    }
+    if (frames%8==5){
+    for (var a=0;a<ellipselemente.length;a++){
+        var temp=ellipselemente[a];
+        if (temp[5]<6){
+            switch (temp[5]){
+                case 0:
+                    ellipselemente[a][4]="kieferleichtoffen3.png";
+                    break;
+                case 1:
+                    ellipselemente[a][4]="kieferweitoffen3.png";
+                    break;
+                case 2:
+                    ellipselemente[a][4]="kieferleichtoffen3.png";
+                    break;
+                case 3:
+                    ellipselemente[a][4]="meinkiefer3.png";
+                    break;
+                case 4:
+                    ellipselemente[a][4]="kieferzu.png";
+                    break;
+                case 5:
+                    ellipselemente[a][4]="meinkiefer2.png";
+                    break;
+            }
+            ellipselemente[a][5]+=1;
+        }
+    }
+    }
+    /*var rect=getpos(document.getElementById("el1"));
+    var rect2=[parseInt(document.getElementById("K0").style.left),parseInt(document.getElementById("K0").style.top)];
+    if (myIPS(ctx1,rect[0],rect[1],parseInt(cw1.style.width),parseInt(cw1.style.height),ctx2,rect2[0],rect2[1],parseInt(cw2.style.width),parseInt(cw2.style.height))){
+        var c=document.getElementById("K0");
+        var ctx=c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(55,55,50,0,2*Math.PI);
+        ctx.fillStyle = '#FF2222';
+        ctx.fill();
+        ctx.stroke();
+    }
+    else{
+        var c=document.getElementById("K0");
+        var ctx=c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(55,55,50,0,2*Math.PI);
+        ctx.fillStyle = '#1613C9';
+        ctx.fill();
+        ctx.stroke();
+    }*/
+    if (bodyw!=window.innerWidth || bodyh!=window.innerHeight){
+        bodyw=window.innerWidth;
+        bodyh=window.innerHeight;
+        bodyrect=document.getElementById("body").getBoundingClientRect();
+        center=[bodyrect.left+bodyw/2,bodyrect.top+bodyh/2];
+    }    
+    gegen=center[0]-pos[0];
+    var plus=0;
+    an=center[1]-pos[1];
+    hyp=Math.sqrt(Math.pow(gegen,2)+Math.pow(an,2));
+    winkel=((Math.asin(gegen/hyp))* (180 / Math.PI));
+    if (an>0){
+        winkel+=(90-winkel)*2
+    }
+    position=bewegen(position,center,pos,speedi);
+    document.getElementById("position").innerHTML="["+Math.floor(position[0])+", "+Math.floor(position[1])+"]";
+    bodypos=[position[0]-(center[0]-bodyrect.left)/size,position[1]-(center[1]-bodyrect.top)/size];
+    //full=true;
+    if (full){
+        changeelements(bodypos,fleischpos,kreispos,true);
+        full=false;
+    }
+    changeelements(bodypos,fleischpos,kreispos,false);
+    blitborders(bodypos);
+    zeichnemain(winkel);
+    for (var a=0;a<ellipselemente.length;a++){
+        ellipselemente[a][3].width=kwidth;
+        ellipselemente[a][3].height=kheight;
+
+        var altx=ellipselemente[a][0];
+        var alty=ellipselemente[a][1];
+        var rad=Math.sqrt(Math.pow(altx-ellipsx,2)+Math.pow(alty-ellipsy,2));
+        var untenpunkt=[ellipsx,ellipsy+rad];
+        var grostrecke=Math.sqrt(Math.pow(untenpunkt[0]-altx,2)+Math.pow(untenpunkt[1]-alty,2));
+        var extrawinkel=Math.asin((grostrecke/2)/rad)* (180 / Math.PI)*2;
+        if (altx-ellipsx>0){
+            extrawinkel+=(180-extrawinkel)*2;
+        }
+        extrawinkel+=180;
+        //degrees = radians * (180/pi)
+        //radians = degrees * (pi/180)
+        var neux=rad*Math.cos((winkel+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var neuy=rad*Math.sin((winkel+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var rect=getpos(document.getElementById("el1"));
+        ellipselemente[a][3].setAttribute("style","z-index:3;position:absolute;height:"+kheight+"px;width:"+kwidth+"px;top:"+(rect[1]+ellipsy+neuy-kheight/2)+"px;left:"+(rect[0]+ellipsx+neux-kheight/2)+"px;");
+        //drawminiellip(ellipsx+neux,ellipsy+neuy,winkel,context);
+        ellipselemente[a][3].getContext('2d').beginPath();
+        drawminiellip(kwidth/2,kheight/2,ellipselemente[a][2]+winkel-180,ellipselemente[a][3].getContext('2d'),ellipselemente[a][4]);
+    }
+    for (var a=0;a<stachelelemente.length;a++){
+        stachelelemente[a][3].width=123;
+        stachelelemente[a][3].height=123;
+
+        var altx=stachelelemente[a][0];
+        var alty=stachelelemente[a][1];
+        var rad=Math.sqrt(Math.pow(altx-ellipsx,2)+Math.pow(alty-ellipsy,2));
+        var untenpunkt=[ellipsx,ellipsy+rad];
+        var grostrecke=Math.sqrt(Math.pow(untenpunkt[0]-altx,2)+Math.pow(untenpunkt[1]-alty,2));
+        var extrawinkel=Math.asin((grostrecke/2)/rad)* (180 / Math.PI)*2;
+        if (altx-ellipsx>0){
+            extrawinkel+=(180-extrawinkel)*2;
+        }
+        extrawinkel+=180;
+        //degrees = radians * (180/pi)
+        //radians = degrees * (pi/180)
+        var neux=rad*Math.cos((winkel+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var neuy=rad*Math.sin((winkel+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var rect=getpos(document.getElementById("el1"));
+        stachelelemente[a][3].setAttribute("style","z-index:3;position:absolute;height:"+123+"px;width:"+123+"px;top:"+(rect[1]+ellipsy+neuy-123/2)+"px;left:"+(rect[0]+ellipsx+neux-123/2)+"px;");
+        //drawminiellip(ellipsx+neux,ellipsy+neuy,winkel,context);
+        stachelelemente[a][3].getContext('2d').beginPath();
+        drawminiellip(123/2,123/2,stachelelemente[a][2]+winkel-180,stachelelemente[a][3].getContext('2d'),stachelelemente[a][4]);
+    }
+    for (var a=0;a<augenelemente.length;a++){
+        augenelemente[a][3].width=60;
+        augenelemente[a][3].height=60;
+
+        var altx=augenelemente[a][0];
+        var alty=augenelemente[a][1];
+        var rad=Math.sqrt(Math.pow(altx-ellipsx,2)+Math.pow(alty-ellipsy,2));
+        var untenpunkt=[ellipsx,ellipsy+rad];
+        var grostrecke=Math.sqrt(Math.pow(untenpunkt[0]-altx,2)+Math.pow(untenpunkt[1]-alty,2));
+        var extrawinkel=Math.asin((grostrecke/2)/rad)* (180 / Math.PI)*2;
+        if (altx-ellipsx>0){
+            extrawinkel+=(180-extrawinkel)*2;
+        }
+        extrawinkel+=180;
+        //degrees = radians * (180/pi)
+        //radians = degrees * (pi/180)
+        var neux=rad*Math.cos((winkel+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var neuy=rad*Math.sin((winkel+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var rect=getpos(document.getElementById("el1"));
+        augenelemente[a][3].setAttribute("style","z-index:3;position:absolute;height:"+60+"px;width:"+60+"px;top:"+(rect[1]+ellipsy+neuy-60/2)+"px;left:"+(rect[0]+ellipsx+neux-60/2)+"px;");
+        //drawminiellip(ellipsx+neux,ellipsy+neuy,winkel,context);
+        augenelemente[a][3].getContext('2d').beginPath();
+        drawminiellip(60/2,60/2,augenelemente[a][2]+winkel-180,augenelemente[a][3].getContext('2d'),augenelemente[a][4]);
+    }
+    for (var a=0;a<boostelemente.length;a++){
+        boostelemente[a][3].width=123;
+        boostelemente[a][3].height=123;
+
+        var altx=boostelemente[a][0];
+        var alty=boostelemente[a][1];
+        var rad=Math.sqrt(Math.pow(altx-ellipsx,2)+Math.pow(alty-ellipsy,2));
+        var untenpunkt=[ellipsx,ellipsy+rad];
+        var grostrecke=Math.sqrt(Math.pow(untenpunkt[0]-altx,2)+Math.pow(untenpunkt[1]-alty,2));
+        var extrawinkel=Math.asin((grostrecke/2)/rad)* (180 / Math.PI)*2;
+        if (altx-ellipsx>0){
+            extrawinkel+=(180-extrawinkel)*2;
+        }
+        extrawinkel+=180;
+        //degrees = radians * (180/pi)
+        //radians = degrees * (pi/180)
+        var neux=rad*Math.cos((winkel+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var neuy=rad*Math.sin((winkel+extrawinkel)*(Math.PI/180)+Math.PI/2);
+        var rect=getpos(document.getElementById("el1"));
+        boostelemente[a][3].setAttribute("style","z-index:3;position:absolute;height:"+123+"px;width:"+123+"px;top:"+(rect[1]+ellipsy+neuy-123/2)+"px;left:"+(rect[0]+ellipsx+neux-123/2)+"px;");
+        //drawminiellip(ellipsx+neux,ellipsy+neuy,winkel,context);
+        boostelemente[a][3].getContext('2d').beginPath();
+        if (nitro){
+            drawminiellip(123/2,123/2,boostelemente[a][2]+winkel-180,boostelemente[a][3].getContext('2d'),"images/rakboost.png"); 
+            var alpha=boostelemente[a][2]+winkel-180;
+            var hyp=4;
+            var alpharad=alpha*(Math.PI/180);
+            var gegen=Math.sin(alpharad)*hyp;
+            if (alpha%180==0){
+                if (alpha%360==0){
+                    an=-hyp;
+                }
+                else{
+                    an=hyp;
+                }
+            }
+            if (alpha%(-180)==0){
+                if (alpha%(-360)==0){
+                    an=-hyp;
+                }
+                else{
+                    an=hyp;
+                }
+            }
+            else{
+                var an=-Math.cos(alpharad)*hyp;    
+            }
+            if (position[0]+gegen>=0&&position[0]+gegen<=5000){
+                position[0]+=gegen;    
+            }
+            if (position[1]+an>=0&&position[1]+an<=5000){
+                position[1]+=an;
+            }  
+            akthunger-=0.01; 
+        }
+        else{
+            drawminiellip(123/2,123/2,boostelemente[a][2]+winkel-180,boostelemente[a][3].getContext('2d'),"images/rinboost.png");
+        }
+    }
+    /*document.getElementById("el1").style.transform="rotate("+parseInt(winkel)+"deg)";
+    document.getElementById("el1").style.webkitTransform="rotate("+parseInt(winkel)+"deg)";
+    document.getElementById("el1").style.MozTransform="rotate("+parseInt(winkel)+"deg)";
+    document.getElementById("el1").style.msTransform="rotate("+parseInt(winkel)+"deg)";
+    document.getElementById("el1").style.OTransform="rotate("+parseInt(winkel)+"deg)";*/
+}
+untersuch=[];
+displayelements(bodypos,fleischpos,kreispos);
+function clearall(){
+    for (var a=0;a<fleischpos.length;a++){
+        if (fleischpos[a]){
+            document.getElementById("K"+a).remove();
+        }
+    }
+    for (var a=0;a<kreispos.length;a++){
+        document.getElementById("C"+a).remove();
+    }
+    displayelements(bodypos,fleischpos,kreispos);
+    full=true;
+}
+//clearall();
+/*var canvas = document.getElementById('el1');
+var context = canvas.getContext('2d');
+context.beginPath();
+context.arc(50,50,750,0,2*Math.PI);
+context.fillStyle = '#D03000';
+if (a==0){
+    context.fillStyle = '#1613C9';
+}
+context.fill();
+context.stroke();*/
+/*var centerX = 0;
+var centerY = 0;
+var radius = 50;
+ellipsis(centerX,centerY,radius,context);
+ellipsis(50,50,20,context);*/
+maintask=setInterval(winkelfind, 10);
+</script>
+</body>
+</html>
