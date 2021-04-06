@@ -1,2 +1,2 @@
 # Some usefull helper programs
-A collection of usefull little helper scripts, mainly for my own use. But if you happen to stumble into this repo, feel free to use any of the programs for yourself.
+You may want to check out [Tricks_in_Python.ipynb](Tricks_in_Python.ipynb) to find out some things about python you did not know before.
