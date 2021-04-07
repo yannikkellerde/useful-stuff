@@ -111,7 +111,7 @@ email = Mail()
 while 1:
     print("Checking")
     email.checkMail()
-    time.sleep(5)
+    time.sleep(60)
 
 
 """
