@@ -4,6 +4,7 @@ import urllib.request
 import shutil
 import os
 import subprocess
+import traceback
 if os.uname()[1]!="raspberrypi":
     from playsound import playsound
 
@@ -104,7 +105,10 @@ class Mail():
         id_list = self.unRead[1][0].split()
         for id in id_list:
             if not id in self.known_ids:
-                self.read_mail(id)
+                try:
+                    self.read_mail(id)
+                except Exception as e:
+                    traceback.print_exc()
                 self.known_ids.add(id)
         
 email = Mail()
