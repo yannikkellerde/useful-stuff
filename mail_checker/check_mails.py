@@ -32,8 +32,8 @@ def mail_parser(mail):
     email_sender = mail.split("X-Envelope-From: <")[1].split(">")[0]
     sender = mail.split(r"\nFrom: ")[1].split("<")[0]
     betreff = mail.split("Subject: ")[1].split(r"\r\n")[0].replace("Re:","").replace("Fwd:","")
-    content = mail.split("Content-Transfer-Encoding:")[1].split(r"\r\n\r\n")[1].split("Content-Type:")[0]
-    return {"sender":sender,"betreff":betreff,"content":content,"email_sender":email_sender}
+    #content = mail.split("Content-Transfer-Encoding:")[1].split(r"\r\n\r\n")[1].split("Content-Type:")[0]
+    return {"sender":sender,"betreff":betreff,"email_sender":email_sender}
 
 def clean_string(string):
     allowed = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 "
