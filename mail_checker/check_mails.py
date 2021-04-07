@@ -73,6 +73,7 @@ class Mail():
         for response_part in data:
             if isinstance(response_part, tuple):
                 parts = mail_parser(response_part[1])
+                print(parts)
                 if check_clean(parts["sender"]):
                     sender = clean_string(parts["sender"])
                 else:
@@ -90,7 +91,7 @@ class Mail():
                     print(e)
                     break
                 if os.uname()[1]=="raspberrypi":
-                    subprocess.call(["mplayer",filename])
+                    subprocess.call(["mplayer",filename],stdout=subprocess.DEVNULL)
                 else:
                     playsound(filename, True)
                 print("playing sound")
