@@ -90,7 +90,7 @@ class Mail():
                     print(e)
                     break
                 if os.uname()[1]=="raspberrypi":
-                    subprocess.call("mplayer",filename)
+                    subprocess.call(["mplayer",filename])
                 else:
                     playsound(filename, True)
                 print("playing sound")
