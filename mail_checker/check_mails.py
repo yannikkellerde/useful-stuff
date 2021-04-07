@@ -91,7 +91,8 @@ class Mail():
                     break
                 if os.uname()[1]=="raspberrypi":
                     subprocess.call("mplayer",filename)
-                playsound(filename, True)
+                else:
+                    playsound(filename, True)
                 print("playing sound")
 
     def checkMail(self):
