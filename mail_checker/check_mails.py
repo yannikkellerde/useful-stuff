@@ -74,8 +74,6 @@ class Mail():
 
         for response_part in data:
             if isinstance(response_part, tuple):
-                print(response_part)
-                exit()
                 parts = mail_parser(response_part[1])
                 print(parts)
                 if check_clean(parts["sender"]):
