@@ -73,7 +73,7 @@ class Mail():
                     sender = clean_string(parts._from[0][1])
                 betreff = clean_string(parts.subject)
                 print(parts._from)
-                to_speak = f"Neue Nachricht. Von {sender}. Betreff. {}".replace(r"/\n/g", ' ')
+                to_speak = f"Neue Nachricht. Von {sender}. Betreff. {betreff}".replace(r"/\n/g", ' ')
                 print(to_speak)
                 if len(to_speak) > 200:
                     print("Too long message, probably there is an error")
