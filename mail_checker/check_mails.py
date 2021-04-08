@@ -5,6 +5,7 @@ import shutil
 import os
 import subprocess
 import traceback
+import mailparser
 if os.uname()[1]!="raspberrypi":
     from playsound import playsound
 
@@ -28,18 +29,8 @@ def get_audio(text,tofile="toplay.mp3"):
     else:
         raise RuntimeError("Invalid response from server.")
 
-def mail_parser(mail):
-    mail = str(mail)
-    email_sender = mail.split("X-Envelope-From: <")[1].split(">")[0]
-    sender = mail.split(r"\nFrom: ")[1].split("<")[0]
-    if r"\r\n" in sender:
-        sender = sender.split(r"\r\n")[0]
-    betreff = mail.split("Subject: ")[1].split(r"\r\n")[0].replace("Re:","").replace("Fwd:","")
-    #content = mail.split("Content-Transfer-Encoding:")[1].split(r"\r\n\r\n")[1].split("Content-Type:")[0]
-    return {"sender":sender,"betreff":betreff,"email_sender":email_sender}
-
 def clean_string(string):
-    allowed = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 "
+    allowed = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 üäöÜÄÖ"
     out_str = ""
     last_space = False
     for char in string:
@@ -53,7 +44,7 @@ def clean_string(string):
     return out_str
 
 def check_clean(string):
-    allowed = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-,.#`!?'\"/& "
+    allowed = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890üäöÜÄÖ_-,.#`!?'\"/& ()"
     for char in string:
         if char not in allowed:
             return False
@@ -75,13 +66,12 @@ class Mail():
 
         for response_part in data:
             if isinstance(response_part, tuple):
-                parts = mail_parser(response_part[1])
-                print(parts)
-                if check_clean(parts["sender"]):
-                    sender = clean_string(parts["sender"])
+                parts = mailparser.parse_from_bytes(response_part[1])
+                if check_clean(parts._from[0][0]):
+                    sender = clean_string(parts._from[0][0])
                 else:
-                    sender = clean_string(parts["email_sender"])
-                to_speak = f"Neue Nachricht. Von {sender}. Betreff. {parts['betreff']}".replace(r"/\n/g", ' ')
+                    sender = clean_string(parts._from[0][1])
+                to_speak = f"Neue Nachricht. Von {sender}. Betreff. {clean_string(parts.subject)}".replace(r"/\n/g", ' ')
                 if len(to_speak) > 200:
                     print("Too long message, probably there is an error")
                     print(to_speak)
