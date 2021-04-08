@@ -106,7 +106,10 @@ email = Mail()
 # check for new mail every minute
 while 1:
     print("Checking")
-    email.checkMail()
+    try:
+        email.checkMail()
+    except Exception as e:
+        traceback.print_exc()
     time.sleep(60)
 
 
