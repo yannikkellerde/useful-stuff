@@ -67,7 +67,7 @@ class Mail():
         for response_part in data:
             if isinstance(response_part, tuple):
                 parts = mailparser.parse_from_bytes(response_part[1])
-                if check_clean(parts._from[0][0]):
+                if len(parts._from[0][0])>3 and check_clean(parts._from[0][0]):
                     sender = clean_string(parts._from[0][0])
                 else:
                     sender = clean_string(parts._from[0][1])
