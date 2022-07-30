@@ -1,5 +1,6 @@
 import importlib
 import pkgutil
+import inspect
 
 def iter_module(module_name,shorten=False):
     try:
@@ -9,6 +10,7 @@ def iter_module(module_name,shorten=False):
         return {}
     result = {module_name:module}
     if not hasattr(module,"__path__"):
+        result.update(dict(list(inspect.getmembers(module,lambda x:inspect.isclass(x) or inspect.ismethod(x) or inspect.isfunction(x)))))
         return result
     subnames = [str(x.name) for x in pkgutil.iter_modules(module.__path__)]
     for subname in subnames:
