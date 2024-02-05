@@ -1,3 +1,5 @@
 secrets.json
 *.mp3
 .ipynb_checkpoints/
+**/*.egg-info/**
+**/__pycache__/**
